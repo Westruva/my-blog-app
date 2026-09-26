@@ -1,10 +1,11 @@
 import "./styles.css";
 
-const API_URL =
-	import.meta.env.VITE_API_URL ||
-	(window.location.hostname === "marginj.netlify.app"
+const API_URL = normalizeApiUrl(
+	import.meta.env.VITE_API_URL,
+	window.location.hostname === "marginj.netlify.app"
 		? "https://blog-backend-production-6f66.up.railway.app/api"
-		: "http://localhost:4000/api");
+		: "http://localhost:4000/api",
+);
 const app = document.querySelector("#app");
 
 const state = {
@@ -276,6 +277,12 @@ function readStoredUser() {
 		return null;
 	}
 }
+
+function normalizeApiUrl(value, fallback) {
+	if (!value || value.includes("your-backend-url.com")) return fallback;
+	return /^https?:\/\//i.test(value) ? value : `https://${value}`;
+}
+
 function formatDate(value) {
 	return value
 		? new Intl.DateTimeFormat("en", {

@@ -1,10 +1,11 @@
 import "./styles.css";
 
-const API_URL =
-	import.meta.env.VITE_API_URL ||
-	(window.location.hostname === "marginjadmin.netlify.app"
+const API_URL = normalizeApiUrl(
+	import.meta.env.VITE_API_URL,
+	window.location.hostname === "marginjadmin.netlify.app"
 		? "https://blog-backend-production-6f66.up.railway.app/api"
-		: "http://localhost:4000/api");
+		: "http://localhost:4000/api",
+);
 const WEB_URL =
 	import.meta.env.VITE_WEB_URL ||
 	(window.location.hostname === "marginjadmin.netlify.app"
@@ -223,6 +224,11 @@ function readUser() {
 	} catch {
 		return null;
 	}
+}
+
+function normalizeApiUrl(value, fallback) {
+	if (!value || value.includes("your-backend-url.com")) return fallback;
+	return /^https?:\/\//i.test(value) ? value : `https://${value}`;
 }
 function firstName(name) {
 	return name.split(" ")[0];
