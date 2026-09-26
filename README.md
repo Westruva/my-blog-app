@@ -1,5 +1,7 @@
 # Margin Journal
 
+1 Backend 2 Frontends
+
 A blog platform with one Express/Prisma backend and two browser clients:
 
 - `web/`: public journal client built with Vite, HTML, CSS, and JavaScript
