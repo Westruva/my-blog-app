@@ -1,6 +1,15 @@
 import "./styles.css";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000/api";
+const API_URL =
+	import.meta.env.VITE_API_URL ||
+	(window.location.hostname === "marginjadmin.netlify.app"
+		? "https://blog-backend-production-6f66.up.railway.app/api"
+		: "http://localhost:4000/api");
+const WEB_URL =
+	import.meta.env.VITE_WEB_URL ||
+	(window.location.hostname === "marginjadmin.netlify.app"
+		? "https://marginj.netlify.app"
+		: "http://localhost:5173");
 const app = document.querySelector("#app");
 
 const state = {
@@ -57,7 +66,7 @@ function renderLogin(error = "") {
 
 function renderDashboard(error = "") {
 	const editing = state.editingPost;
-	app.innerHTML = `<div class="app-shell"><aside class="sidebar"><a class="brand" href="#/"><span></span>margin<span>/</span></a><div class="sidebar-label">Workspace</div><a class="side-link active" href="#/">Overview <b>${state.posts.length}</b></a><a class="side-link" href="#editor">New note <b>+</b></a><div class="sidebar-footer"><div class="avatar">${escapeHtml((state.user.name || "M").slice(0, 1).toUpperCase())}</div><div><strong>${escapeHtml(state.user.name)}</strong><small>${escapeHtml(state.user.role)}</small></div><button class="icon-button" data-logout title="Sign out">↗</button></div></aside><main class="dashboard"><header class="topbar"><div><p class="kicker">${formatDate(new Date())}</p><h2>Good morning, ${escapeHtml(firstName(state.user.name))}.</h2></div><a class="public-link" href="${escapeAttribute(import.meta.env.VITE_WEB_URL || "http://localhost:5173")}" target="_blank" rel="noreferrer">View journal ↗</a></header>${error ? `<div class="alert">${escapeHtml(error)}</div>` : ""}${editing ? editorView(editing) : overviewView()}</main></div>`;
+	app.innerHTML = `<div class="app-shell"><aside class="sidebar"><a class="brand" href="#/"><span></span>margin<span>/</span></a><div class="sidebar-label">Workspace</div><a class="side-link active" href="#/">Overview <b>${state.posts.length}</b></a><a class="side-link" href="#editor">New note <b>+</b></a><div class="sidebar-footer"><div class="avatar">${escapeHtml((state.user.name || "M").slice(0, 1).toUpperCase())}</div><div><strong>${escapeHtml(state.user.name)}</strong><small>${escapeHtml(state.user.role)}</small></div><button class="icon-button" data-logout title="Sign out">↗</button></div></aside><main class="dashboard"><header class="topbar"><div><p class="kicker">${formatDate(new Date())}</p><h2>Good morning, ${escapeHtml(firstName(state.user.name))}.</h2></div><a class="public-link" href="${escapeAttribute(WEB_URL)}" target="_blank" rel="noreferrer">View journal ↗</a></header>${error ? `<div class="alert">${escapeHtml(error)}</div>` : ""}${editing ? editorView(editing) : overviewView()}</main></div>`;
 	app.querySelector("[data-logout]").addEventListener("click", logout);
 	if (editing) {
 		app.querySelector("#post-form").addEventListener("submit", handlePostSave);

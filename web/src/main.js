@@ -1,6 +1,10 @@
 import "./styles.css";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000/api";
+const API_URL =
+	import.meta.env.VITE_API_URL ||
+	(window.location.hostname === "marginj.netlify.app"
+		? "https://blog-backend-production-6f66.up.railway.app/api"
+		: "http://localhost:4000/api");
 const app = document.querySelector("#app");
 
 const state = {

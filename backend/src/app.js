@@ -13,6 +13,8 @@ export function createApp() {
 	const allowedOrigins = [
 		process.env.WEB_ORIGIN,
 		process.env.ADMIN_ORIGIN,
+		"https://marginj.netlify.app",
+		"https://marginjadmin.netlify.app",
 	].filter(Boolean);
 
 	app.use(
