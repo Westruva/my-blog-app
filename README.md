@@ -32,10 +32,8 @@ The migration enables PostgreSQL's `pg_trgm` extension and adds GIN indexes for 
 
 The applications run at:
 
-- Public journal: http://localhost:5173
-- Admin desk: http://localhost:5174
-- API health check: http://localhost:4000/api/health
-- API readiness check: http://localhost:4000/api/ready
+- Public journal: https://marginj.netlify.app/#/
+- Admin desk: https://marginjadmin.netlify.app/
 
 Run the database-independent JWT tests with `npm test`. For route and Prisma integration tests, set `DATABASE_URL` to a disposable test database and run `npm run test:integration --workspace backend`.
 
