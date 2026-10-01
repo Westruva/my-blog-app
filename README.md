@@ -79,3 +79,11 @@ For each static site, set `VITE_API_URL` to the deployed backend URL ending in `
 - `POST /api/posts` (JWT)
 - `PATCH /api/posts/:id` (JWT)
 - `DELETE /api/posts/:id` (JWT)
+
+## Screenshots
+
+![Project Screenshot](mj-client6.png)
+![Project Screenshot](mj-client5.png)
+![Project Screenshot](./marginjounarl-admin.png)
+![Project Screenshot](marginjournal-admin2.png)
+![Project Screenshot](marginjounal-client3.png)

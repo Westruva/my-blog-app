@@ -5,7 +5,7 @@ import { createAccessToken } from "../lib/auth.js";
 import { prisma } from "../lib/prisma.js";
 
 const credentialsSchema = z.object({
-	email: z.string().trim().toLowerCase().email(),
+	email: z.email().trim().toLowerCase(),
 	password: z.string().min(8),
 	name: z.string().trim().min(1).max(100).optional(),
 });
